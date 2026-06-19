@@ -1,0 +1,14 @@
+title: Karl on Capital
+description: Life, Ideas & Culture
+url: "https://karloncapital.github.io"
+baseurl: "/blog"
+
+permalink: /:year/:month/:day/:title/
+
+# No theme — we use our own layout
+theme: null
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

@@ -1,0 +1,60 @@
+---
+layout: default
+title: Home
+---
+
+<main>
+  <div class="home-wrap">
+
+    <!-- Featured: always the most recent post -->
+    {% assign featured = site.posts | first %}
+    {% assign feat_cat = featured.categories | first %}
+    <article class="featured">
+      <div>
+        <div class="featured-label">Featured Essay</div>
+        <a href="{{ featured.url | relative_url }}" class="featured-title">
+          {{ featured.title }}
+        </a>
+        <p class="featured-excerpt">{{ featured.excerpt | strip_html | truncate: 220 }}</p>
+        <div class="featured-byline">
+          {{ site.author }} · {{ featured.date | date: "%B %-d, %Y" }}
+          {% if featured.read_time %} · {{ featured.read_time }} min read{% endif %}
+        </div>
+      </div>
+      {% if featured.pull_quote %}
+      <div class="featured-pull">
+        <blockquote>{{ featured.pull_quote }}</blockquote>
+      </div>
+      {% else %}
+      <div class="featured-pull">
+        <blockquote>{{ featured.excerpt | strip_html | truncate: 180 }}</blockquote>
+      </div>
+      {% endif %}
+    </article>
+
+    <!-- Recent posts grid (skip featured) -->
+    {% assign recent = site.posts | offset: 1 | limit: 6 %}
+    {% if recent.size > 0 %}
+    <div class="section-head">
+      <h2>Recent</h2>
+      <div class="section-head-rule"></div>
+    </div>
+
+    <div class="post-grid">
+      {% for post in recent %}
+        {% assign cat = post.categories | first %}
+        <a href="{{ post.url | relative_url }}" class="post-card">
+          <div class="post-card-cat cat-{{ cat }}">{{ cat | capitalize }}</div>
+          <h2 class="post-card-title">{{ post.title }}</h2>
+          <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+          <div class="post-card-meta">
+            {{ post.date | date: "%B %-d, %Y" }}
+            {% if post.read_time %} · {{ post.read_time }} min{% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+</main>
