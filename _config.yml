@@ -1,7 +1,7 @@
 title: Karl on Capital
 description: Everything All At Once
 url: "https://karloncapital.github.io"
-baseurl: "/blog"
+baseurl: "/"
 
 permalink: /:year/:month/:day/:title/
 
